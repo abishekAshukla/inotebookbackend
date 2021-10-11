@@ -16,6 +16,7 @@ app.use('/api/auth', require('./routes/auth'))
 // on 'localhost:3000/api/auth' 'auth.js' will be served
 app.use('/api/notes', require('./routes/notes'))
 
-app.listen(port, () => {
+// app.listen(port, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`iNoteBook BackEnd listening at http://localhost:${port}`)
 })
