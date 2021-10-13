@@ -5,7 +5,7 @@ connectToMongo();
 
 
 const app = express()
-const port = process.env.PORT || 5000
+const port = 5000
 
 // app.get('/', (req, res) => { res.send('Hello from Express!')
 
@@ -18,6 +18,6 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`iNoteBook BackEnd listening at http://localhost:${port}`)
 })
