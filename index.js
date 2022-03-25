@@ -8,7 +8,7 @@ const app = express()
 const port = 5000
 
 app.get('/express', (req, res) => { res.send('Hello from Express!')})
-app.get('/node', (req, res) => { res.send('Hello from NodeJs yuhu machate raho superman')})
+app.get('/node', (req, res) => { res.send('Hello from NodeJs yuhu machate raho tony stark')})
 
 app.use(cors())
 app.use(express.json())
@@ -18,6 +18,7 @@ app.use('/api/auth', require('./routes/auth'))
 // on 'localhost:3000/api/auth' 'auth.js' will be served
 app.use('/api/notes', require('./routes/notes'))
 app.use('/api/user', require('./routes/user'))
+app.use('/api/chat', require('./routes/chat'))
 
 
 // app.listen(process.env.PORT || port, () => {

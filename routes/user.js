@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/createuserforchat', registerUser)
 router.post('/login' , authUser)
-router.get('/allusers' , protect , allUsers)
+router.get('/' , protect , allUsers)
 
 module.exports = router;
