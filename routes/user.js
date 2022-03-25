@@ -1,9 +1,10 @@
 const express = require('express');
-const {registerUser , authUser } = require("../controllersforchatapp/usercontroller")
-// const { protect } = require("../middleware/authMiddleware")
+const {registerUser , authUser , allUsers} = require("../controllersforchatapp/usercontroller")
+const { protect } = require("../middlewareforchatapp/authmiddleware")
 const router = express.Router();
 
 router.post('/createuserforchat', registerUser)
 router.post('/login' , authUser)
+router.get('/allusers' , protect , allUsers)
 
 module.exports = router;
