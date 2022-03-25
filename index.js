@@ -8,6 +8,7 @@ const app = express()
 const port = 5000
 
 app.get('/express', (req, res) => { res.send('Hello from Express!')})
+app.get('/node', (req, res) => { res.send('Hello from NodeJs')})
 
 app.use(cors())
 app.use(express.json())
@@ -21,3 +22,5 @@ app.use('/api/notes', require('./routes/notes'))
 app.listen(process.env.PORT || port, () => {
   console.log(`iNoteBook BackEnd listening at http://localhost:${port}`)
 })
+
+
