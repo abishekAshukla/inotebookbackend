@@ -8,7 +8,7 @@ const app = express()
 const port = 5000
 
 app.get('/express', (req, res) => { res.send('Hello from Express!')})
-app.get('/node', (req, res) => { res.send('Hello from NodeJs')})
+app.get('/node', (req, res) => { res.send('Hello from NodeJs yuhu')})
 
 app.use(cors())
 app.use(express.json())
@@ -19,8 +19,10 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
 
-app.listen(process.env.PORT || port, () => {
-  console.log(`iNoteBook BackEnd listening at http://localhost:${port}`)
-})
+// app.listen(process.env.PORT || port, () => {
+//   console.log(`iNoteBook BackEnd listening at http://localhost:${port}`)
+// })
+
+const server = app.listen(process.env.PORT || port, console.log(`server started on ${port}`))
 
 
