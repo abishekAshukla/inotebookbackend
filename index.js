@@ -8,7 +8,7 @@ const app = express()
 const port = 5000
 
 app.get('/express', (req, res) => { res.send('Hello from Express!')})
-app.get('/node', (req, res) => { res.send('Hello from NodeJs yuhu machate raho tony stark urff batman')})
+app.get('/node', (req, res) => { res.send('Hello from NodeJs yuhu machate raho tony stark updated')})
 
 app.use(cors())
 app.use(express.json())
@@ -31,7 +31,7 @@ const server = app.listen(process.env.PORT || port, console.log(`server started 
 const io = require('socket.io')(server , {
   pingTimeout: 60000,
   cors: {
-      origin: "http://localhost:3000",
+      origin: "https://talk-a-tive.netlify.app",
   },
 })
 
