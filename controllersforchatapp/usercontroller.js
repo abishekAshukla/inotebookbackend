@@ -4,14 +4,14 @@ const User = require('../modelsforchatapp/Usermodel')
 const generateToken = require('../configforchatapp/generateToken')
 
 const registerUser = asyncHandler(async (req, res) => {
-    const {name, email, password, pic} = req.body;
+    const {name, email, phonenumber, password, pic} = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !phonenumber|| !password) {
         res.status(400);
         throw new Error("Please enter all the fields")
     }
 
-    const userExists = await User.findOne({email});
+    const userExists = await User.findOne({phonenumber});
 
     if (userExists) {
         res.status(400);
@@ -19,7 +19,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const user = await User.create({
-        name, email, password, pic
+        name, email, phonenumber, password, pic
     })
 
     if (user) {
@@ -27,6 +27,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            phonenumber: user.phonenumber,
             pic: user.pic,
             token: generateToken(user._id)
         })
