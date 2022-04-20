@@ -71,8 +71,8 @@ const allUsers = asyncHandler(async (req, res) => {
 })
 
 const checkUserexistence  = asyncHandler(async (req, res) => {
-    const { phnumber } = req.body;
-    const userPhnumberExists = await User.findOne({phnumber});
+    const { phonenumber } = req.body;
+    const userPhnumberExists = await User.findOne({phonenumber});
 
     if (userPhnumberExists) {
         res.status(400);
