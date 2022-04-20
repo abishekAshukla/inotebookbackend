@@ -70,6 +70,21 @@ const allUsers = asyncHandler(async (req, res) => {
     res.send(users);
 })
 
+const checkUserexistence  = asyncHandler(async (req, res) => {
+    const { phnumber } = req.body;
+    const userPhnumberExists = await User.findOne({phnumber});
+
+    if (userPhnumberExists) {
+        res.json({
+            message: "user already exists"
+        })
+    } else{
+        res.json({
+            message: "You can signup with this"
+        })
+    }
+})
 
 
-module.exports = {registerUser , authUser , allUsers }
+
+module.exports = {registerUser , authUser , allUsers, checkUserexistence }
