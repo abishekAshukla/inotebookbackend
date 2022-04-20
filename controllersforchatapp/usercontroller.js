@@ -75,9 +75,8 @@ const checkUserexistence  = asyncHandler(async (req, res) => {
     const userPhnumberExists = await User.findOne({phnumber});
 
     if (userPhnumberExists) {
-        res.json({
-            message: "user already exists"
-        })
+        res.status(400);
+        throw new Error("User already exists")
     } else{
         res.json({
             message: "You can signup with this"
