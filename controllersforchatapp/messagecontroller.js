@@ -50,5 +50,29 @@ const sendMessage = asyncHandler(async (req, res) => {
   }
 })
 
+const delAllMessages = asyncHandler(async (req, res) => {
+  try {
+    const messages = await Message.find({ chat: req.params.chatId })
+      .populate("sender", "name pic email")
+      .populate("chat");
 
-module.exports = {allMessages, sendMessage};
+    let msgsTobeDeleted = messages.map((elem) => {
+      return elem._id;
+    });
+
+    const deleteMsg = async (elem) => {
+      await Message.findByIdAndDelete(elem);
+    };
+
+    msgsTobeDeleted.forEach((element) => {
+      deleteMsg(element);
+    });
+    res.json({ Success: "Messages Has Been Deleted"});
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+});
+
+
+module.exports = {allMessages, sendMessage, delAllMessages};
