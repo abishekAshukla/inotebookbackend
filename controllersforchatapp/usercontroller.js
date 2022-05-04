@@ -4,7 +4,7 @@ const User = require('../modelsforchatapp/Usermodel')
 const generateToken = require('../configforchatapp/generateToken')
 
 const registerUser = asyncHandler(async (req, res) => {
-    const {name, email, phonenumber, password, pic} = req.body;
+    const {name, email, phonenumber, password, pic, rollNo, prnNo, year, department, division} = req.body;
 
     if (!name || !email || !phonenumber|| !password) {
         res.status(400);
@@ -19,7 +19,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const user = await User.create({
-        name, email, phonenumber, password, pic
+        name, email, phonenumber, password, pic, rollNo, prnNo, year, department, division
     })
 
     if (user) {
@@ -29,6 +29,11 @@ const registerUser = asyncHandler(async (req, res) => {
             email: user.email,
             phonenumber: user.phonenumber,
             pic: user.pic,
+            rollNo: user.rollNo,
+            prnNo: user.prnNo,
+            year: user.year,
+            department: user.department,
+            division: user.division,
             token: generateToken(user._id)
         })
     } else {
