@@ -8,7 +8,7 @@ const app = express()
 const port = 5000
 
 app.get('/express', (req, res) => { res.send('Hello from Express!')})
-app.get('/node', (req, res) => { res.send('Hello updated again here')})
+app.get('/node', (req, res) => { res.send('creating blog')})
 
 app.use(cors())
 app.use(express.json())
