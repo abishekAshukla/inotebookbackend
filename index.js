@@ -8,7 +8,7 @@ const app = express()
 const port = 5000
 
 app.get('/express', (req, res) => { res.send('Hello from Express!')})
-app.get('/node', (req, res) => { res.send('creating blog')})
+app.get('/node', (req, res) => { res.send('creating blog203')})
 
 app.use(cors())
 app.use(express.json())
@@ -20,6 +20,7 @@ app.use('/api/notes', require('./routes/notes'))
 app.use('/api/user', require('./routes/user'))
 app.use('/api/chat', require('./routes/chat'))
 app.use('/api/message', require('./routes/message'))
+app.use('/api/blogs', require('./routes/blogpost'))
 
 
 // app.listen(process.env.PORT || port, () => {
