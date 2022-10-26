@@ -1,10 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const BlogPost = require("../modelsforblog/BlogPost");
+const EmailSubscribers = require("../modelsforblog/Email");
 
 // domain/api/blogs/blog/:blogId
 const getblog = asyncHandler(async (req, res) => {
   try {
-    const blog = await BlogPost.findOne({ "postid": req.params.blogId });
+    const blog = await BlogPost.findOne({ postid: req.params.blogId });
     res.json(blog);
   } catch (error) {
     res.status(400);
@@ -96,4 +97,28 @@ const createBlog = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getblog, createBlog };
+// add email in subscribers list
+const addEmail = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    res.status(400);
+    throw new Error("Please enter a valid email");
+  }
+
+  const mail = await EmailSubscribers.create({
+    email,
+  });
+
+  if (mail) {
+    res.status(201).json({
+      _id: mail._id,
+      email: mail.email,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Failed to enter a new email");
+  }
+});
+
+module.exports = { getblog, createBlog, addEmail};
